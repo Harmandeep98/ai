@@ -5,9 +5,10 @@ lock = threading.Lock()
 
 def increament():
     global counter
-    for _ in range(100000):
+    for _ in range(100):
         with lock:
             counter += 1
+            print(f"Counter incremented to: {counter}")
 
 threads = [threading.Thread(target=increament) for _ in range(10)]
 [t.start() for t in threads]

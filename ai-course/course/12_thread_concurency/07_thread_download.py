@@ -1,11 +1,11 @@
-import threading
 import requests
+import threading
 import time
 
 def download(url):
     print(f"Starting download from {url}")
     resp = requests.get(url)
-    print(f"Finished downloading from {url}, size: {len(resp.content)} bytes")
+    print(f"Finished downloading from {url} and result is {resp.content}")
 
 urls = [
     "https://httpbin.org/image/jpeg",
@@ -13,17 +13,16 @@ urls = [
     "https://httpbin.org/image/svg",
 ]
 
-start = time.time()
 threads = []
 
+start = time.time()
+
 for url in urls:
-    t = threading.Thread(target=download, args=(url, ))
+    t = threading.Thread(target=download, args=(url,))
     t.start()
     threads.append(t)
 
 for t in threads:
     t.join()
 
-end = time.time()
-
-print(f"All downloads done in {end - start:.2f} seconds")
+print(f"All downloads done in {time.time() - start:.2f} seconds")

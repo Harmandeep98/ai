@@ -4,7 +4,7 @@ import time
 def cpu_heavy():
     print(f"Crunching some numbers...")
     total = 0
-    for i in range(10**9):
+    for i in range(10** 9):
         total += i
     print("DONE ✅")
 
